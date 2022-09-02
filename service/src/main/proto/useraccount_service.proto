@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "services";
+import "google/api/annotations.proto";
+option java_outer_classname = "UserAccountServicesProto";
+package com.marionete.proto;
+
+service UserAccountService {
+  rpc UserAccount (UserAccountRequest) returns (UserAccountResponse) {
+  option (google.api.http) = {
+        post: "/marionete/useraccount/"
+        body: "*"
+      };
+   }
+}
+message UserAccountRequest {
+  string username = 1;
+  string password = 2;
+}
+message UserAccountResponse {
+ AccountInfo accountInfo=1;
+ UserInfo userInfo=2;
+  }
+
+message AccountInfo {
+    string accountNumber=1;
+  }
+message UserInfo {
+        string name=1;
+        string surname=2;
+        string sex=3;
+        int32 age=4;
+      }
