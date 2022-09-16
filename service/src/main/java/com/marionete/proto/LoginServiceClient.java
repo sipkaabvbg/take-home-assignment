@@ -73,7 +73,7 @@ public class LoginServiceClient extends BaseClient {
         String token;
         LoginServiceClient client;
 
-        client = new LoginServiceClient(Constants.HOST, Constants.PORT);
+        client = new LoginServiceClient(Constants.HOST, Constants.GRPC_SERVER_PORT);
         try {
             token = client.loginRequestBlockingStub(Constants.USER_NAME, Constants.PASSWORD);
             logger.info("LoginService - token: " + token);

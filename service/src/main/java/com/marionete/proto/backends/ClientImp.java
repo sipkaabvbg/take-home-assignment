@@ -9,6 +9,7 @@ import com.twitter.finagle.http.Request;
 import com.twitter.finagle.http.Response;
 import com.twitter.util.Await;
 import com.twitter.util.Future;
+import com.twitter.util.Time;
 
 import java.util.logging.Logger;
 
@@ -87,6 +88,6 @@ public class ClientImp implements Client {
      * @throws Exception
      */
     public void shutdown() throws Exception {
-        Await.result(getServer().close());
+        getServer().close(Time.fromMicroseconds(300));
     }
 }

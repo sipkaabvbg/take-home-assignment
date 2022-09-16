@@ -3,7 +3,6 @@ package com.marionete.proto;
 
 import com.marionete.proto.backends.constants.Constants;
 import com.marionete.proto.services.LoginServiceImpl;
-import com.marionete.proto.services.UserAccountServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
@@ -21,13 +20,12 @@ public class MarioneteServer {
 
     public void start() throws IOException {
 
-        server = ServerBuilder.forPort(Constants.PORT)
+        server = ServerBuilder.forPort(Constants.GRPC_SERVER_PORT)
                 .addService(new LoginServiceImpl())
-                .addService(new UserAccountServiceImpl())
                 .executor((Executors.newFixedThreadPool(200)))
                 .build()
                 .start();
-        logger.info("Server started, listening on " + Constants.PORT);
+        logger.info("Server started, listening on " + Constants.GRPC_SERVER_PORT);
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {

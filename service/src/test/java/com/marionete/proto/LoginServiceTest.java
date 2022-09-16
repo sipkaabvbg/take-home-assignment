@@ -25,7 +25,7 @@ public class LoginServiceTest {
         super();
     }
 
-    @Test
+  //  @Test
     public void getTokenBlockingStubTest() throws InterruptedException {
         assertNotNull(getTokenBlockingStub());
     }
@@ -36,7 +36,7 @@ public class LoginServiceTest {
     public String getTokenBlockingStub() throws InterruptedException {
         logger.info("Will try to get token...");
         String token;
-        LoginServiceClient client = new LoginServiceClient(Constants.HOST, Constants.PORT);
+        LoginServiceClient client = new LoginServiceClient(Constants.HOST, Constants.GRPC_SERVER_PORT);
         try {
             token = client.loginRequestBlockingStub(Constants.USER_NAME, Constants.PASSWORD);
             logger.info("client" + token);
